@@ -21,57 +21,80 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center">
-      <div className="max-w-md mx-auto bg-white p-10 rounded shadow-lg w-full">
-        <h2 className="text-2xl font-bold mb-4">Create account</h2>
-        {error && <div className="text-red-600 mb-2">{error}</div>}
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      <div className="w-full max-w-md">
+        <div className="bg-white/95 backdrop-blur-sm shadow-2xl rounded-2xl p-10 border border-slate-200">
+          <h2 className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-brand to-brand-slate bg-clip-text text-transparent">
+            Create Account
+          </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Name</label>
-            <input
-              type="text"
-              className="mt-1 w-full p-2 border rounded"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-            />
-          </div>
+          {error && (
+            <div className="mb-6 p-4 bg-red-50 border border-red-200 text-red-700 rounded-lg text-sm">
+              {error}
+            </div>
+          )}
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              className="mt-1 w-full p-2 border rounded"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Full Name
+              </label>
+              <input
+                type="text"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                placeholder="John Doe"
+              />
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700">Password</label>
-            <input
-              type="password"
-              className="mt-1 w-full p-2 border rounded"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Email Address
+              </label>
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent from-brand to-brand-slate"
+                placeholder="you@example.com"
+              />
+            </div>
 
-          <div className="flex items-center justify-between">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Password
+              </label>
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition"
+                placeholder="••••••••"
+              />
+            </div>
+
             <button
-              className="bg-blue-600 text-white px-4 py-2 rounded inline-block"
               type="submit"
+              className="w-full bg-brand hover:bg-brand-slate text-white font-bold py-4 rounded-lg transition duration-200 transform hover:scale-[1.02] shadow-lg"
             >
-              Create account
+              Create Account
             </button>
-            <Link to="/login" className="text-sm text-blue-600 hover:underline">
-              Already have an account? Sign in
+          </form>
+
+          <p className="mt-8 text-center text-sm text-slate-600">
+            Already have an account?{' '}
+            <Link
+              to="/login"
+              className="font-semibold text-brand hover:text-brand-slate hover:underline"
+            >
+              Sign in here
             </Link>
-          </div>
-        </form>
+          </p>
+        </div>
       </div>
     </div>
   )
