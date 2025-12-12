@@ -1,21 +1,36 @@
 import React from 'react'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { Outlet, useNavigate, useLocation } from 'react-router-dom'
 import Nav from './components/Nav'
 
 function App() {
   const navigate = useNavigate()
-  const token = localStorage.getItem('token')
+  const location = useLocation()
+  const [token, setToken] = React.useState(localStorage.getItem('token'))
+  
   React.useEffect(() => {
-    if (!token) navigate('/login')
-  }, [token])
+    const handleStorageChange = () => {
+      setToken(localStorage.getItem('token'))
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    return () => window.removeEventListener('storage', handleStorageChange)
+  }, [])
+  
+  React.useEffect(() => {
+    if (!token && location.pathname !== '/login' && location.pathname !== '/register') {
+      navigate('/login', { replace: true })
+    }
+  }, [token, navigate, location.pathname])
+
+  if (!token) {
+    return null
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-brand-dark via-brand to-brand-light">
       <Nav />
-      <main className="py-8">
-        <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-          <Outlet />
-        </div>
+      <main className="pt-4">
+        <Outlet />
       </main>
     </div>
   )
