@@ -1,0 +1,12 @@
+node_modules/
+api/node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+.env
+.env.local
+npm-debug.log
+package-lock.json
+/.vscode/
+coverage/
+/.DS_Store
