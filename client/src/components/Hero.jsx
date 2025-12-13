@@ -7,47 +7,28 @@ export default function Hero() {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         <div className="mb-12">
-          <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full mb-8">
-            <span className="text-sm font-medium tracking-wider">DESIGN FORECAST 2026</span>
-          </div>
-          
-          <h1 className="text-5xl sm:text-7xl lg:text-8xl font-bold mb-8 leading-tight">
-            <span className="block">Creating a Better World</span>
-            <span className="block text-4xl sm:text-6xl lg:text-7xl text-gray-300 mt-6">
-              Through the Power of Design
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+            <span className="block">We are creating a better world</span>
+            <span className="block text-3xl sm:text-4xl lg:text-5xl text-gray-300 mt-6">
+              through the power of design.
             </span>
           </h1>
           
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Gensler is a global architecture, design, and planning firm with 56 locations across Asia, Europe, Australia, the Middle East, and the Americas. Every day we impact millions of people's lives with the spaces we create, which is why people are at the center of everything we do.
+          <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
+            Gensler is a global architecture, design, and planning firm with 56 locations across Asia, Europe, Australia, the Middle East, and the Americas. Every day we impact millions of people's lives with the spaces we create, which is why people are at the center of everything we do. Designing for the human experience is what allows us to tackle the toughest challenges facing cities and shape a more resilient and inclusive future for everyone.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+          <div className="mt-8">
             <Link 
-              to="/research" 
-              className="px-8 py-4 bg-white text-black font-semibold hover:bg-gray-100 transition-colors"
+              to="/about" 
+              className="inline-flex items-center gap-2 text-white hover:text-gray-300 font-medium text-lg"
             >
-              VIEW LATEST RESEARCH
-            </Link>
-            <Link 
-              to="/blog" 
-              className="px-8 py-4 border-2 border-white text-white font-semibold hover:bg-white/10 transition-colors"
-            >
-              VIEW DIALOGUE BLOG
+              LEARN MORE ABOUT GENSLER
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </Link>
           </div>
-        </div>
-        
-        <div className="mt-20">
-          <Link 
-            to="/about" 
-            className="inline-flex items-center gap-2 text-gray-300 hover:text-white font-medium"
-          >
-            LEARN MORE ABOUT GENSLER
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </Link>
         </div>
       </div>
       

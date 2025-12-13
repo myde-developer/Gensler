@@ -41,7 +41,7 @@ export default function Nav() {
             to="/" 
             className="flex items-center space-x-3"
           >
-            <span className="font-bold text-2xl text-gray-900 tracking-tight">
+            <span className="font-bold text-2xl text-gray-900">
               Gensler
             </span>
           </Link>
