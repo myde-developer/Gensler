@@ -5,24 +5,21 @@ import App from './App'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Home from './pages/Home'
-import ErrorBoundary from './components/ErrorBoundary'
 import './index.css'
 
 const root = createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-    <ErrorBoundary>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
-          </Route>
-          <Route path="*" element={<Navigate to='/' />} />
-        </Routes>
-      </BrowserRouter>
-    </ErrorBoundary>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/login" replace />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 )

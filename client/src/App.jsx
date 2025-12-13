@@ -1,29 +1,14 @@
 import React from 'react'
-import { Outlet, useNavigate, useLocation } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 import Nav from './components/Nav'
 
 function App() {
-  const navigate = useNavigate()
-  const location = useLocation()
-  const [token, setToken] = React.useState(localStorage.getItem('token'))
+  // Use sessionStorage for auto-clear when browser closes
+  const token = sessionStorage.getItem('token')
   
-  React.useEffect(() => {
-    const handleStorageChange = () => {
-      setToken(localStorage.getItem('token'))
-    }
-    
-    window.addEventListener('storage', handleStorageChange)
-    return () => window.removeEventListener('storage', handleStorageChange)
-  }, [])
-  
-  React.useEffect(() => {
-    if (!token && location.pathname !== '/login' && location.pathname !== '/register') {
-      navigate('/login', { replace: true })
-    }
-  }, [token, navigate, location.pathname])
-
+  // If no token, redirect to login
   if (!token) {
-    return null
+    return <Navigate to="/login" replace />
   }
 
   return (

@@ -6,7 +6,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "migrate": "node migrations/runMigration.js",
-    "start:prod": "npm run migrate && node index.js"
+    "render-build": "npm run migrate && npm run start"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
