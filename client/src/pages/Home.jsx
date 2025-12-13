@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import DesignForecast from '../components/DesignForecast'
-import FeatureCard from '../components/FeatureCard'
 
 export default function Home() {
   useEffect(() => {
@@ -318,7 +318,7 @@ export default function Home() {
               <div className="lg:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img 
-                    src="https://static1.gensler.com/uploads/image/85346/gensler-la-1280x900_1686179621.jpg"
+                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2074&auto=format&fit=crop"
                     alt="Gensler Office"
                     className="w-full h-auto rounded-lg group-hover:scale-105 transition-transform duration-700"
                   />
@@ -342,7 +342,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div>
-              <h4 className="font-bold text-gray-300 mb-6">CONTACTS</h4>
+              <h4 className="font-bold text-gray-300 mb-6">COURCES</h4>
               <div className="text-gray-500 text-sm hover:text-white transition-colors cursor-pointer">GENSLEFACT SHEET</div>
             </div>
             
