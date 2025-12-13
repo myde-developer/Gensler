@@ -7,10 +7,10 @@ export default function Register() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState(null)
+  const [success, setSuccess] = React.useState(false)
   const [loading, setLoading] = React.useState(false)
   const navigate = useNavigate()
 
-  // Redirect if already logged in
   React.useEffect(() => {
     const token = sessionStorage.getItem('token')
     if (token) {
@@ -22,14 +22,26 @@ export default function Register() {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    setSuccess(false)
     
     try {
-      const res = await api.post('/auth/register', { name, email, password })
-      // Use sessionStorage (clears when browser closes)
-      sessionStorage.setItem('token', res.data.token)
-      navigate('/', { replace: true })
+      await api.post('/auth/register', { name, email, password })
+      
+      // Show success message
+      setSuccess(true)
+      
+      // Clear form
+      setName('')
+      setEmail('')
+      setPassword('')
+      
+      // Redirect to login after 2 seconds
+      setTimeout(() => {
+        navigate('/login', { replace: true })
+      }, 2000)
+      
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed. Try again.')
+      setError(err.response?.data?.error || 'Registration failed. Please try again.')
     } finally {
       setLoading(false)
     }
@@ -50,6 +62,17 @@ export default function Register() {
             </h2>
             <p className="text-gray-400">Join our platform</p>
           </div>
+
+          {success && (
+            <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 text-green-300 rounded-xl">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Registration successful! Redirecting to login...</span>
+              </div>
+            </div>
+          )}
 
           {error && (
             <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl">
@@ -102,7 +125,7 @@ export default function Register() {
 
             <button
               type="submit"
-              disabled={loading}
+              disabled={loading || success}
               className="w-full btn-primary py-4 text-lg font-semibold disabled:opacity-50"
             >
               {loading ? 'Creating Account...' : 'Create Account'}

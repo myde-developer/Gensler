@@ -10,12 +10,14 @@ const api = axios.create({
   }
 })
 
-// Add token from sessionStorage
+// Add token to requests ONLY for protected routes
 api.interceptors.request.use(
   (config) => {
-    const token = sessionStorage.getItem('token')
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+    if (!config.url.includes('/auth/register') && !config.url.includes('/auth/login')) {
+      const token = sessionStorage.getItem('token')
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
     }
     return config
   }

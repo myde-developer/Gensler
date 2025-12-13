@@ -1,34 +1,42 @@
 import React from 'react'
 import api from '../api'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 
 export default function Login() {
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [error, setError] = React.useState(null)
   const [loading, setLoading] = React.useState(false)
+  const [registrationSuccess, setRegistrationSuccess] = React.useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
 
-  // Redirect if already logged in
   React.useEffect(() => {
     const token = sessionStorage.getItem('token')
     if (token) {
       navigate('/', { replace: true })
     }
-  }, [navigate])
+    
+    // Check if redirected from registration
+    if (location.state?.fromRegister) {
+      setRegistrationSuccess(true)
+      // Clear the state after showing message
+      window.history.replaceState({}, document.title)
+    }
+  }, [navigate, location])
 
   async function handleSubmit(e) {
     e.preventDefault()
     setLoading(true)
     setError(null)
+    setRegistrationSuccess(false)
     
     try {
       const res = await api.post('/auth/login', { email, password })
-      // Use sessionStorage (clears when browser closes)
       sessionStorage.setItem('token', res.data.token)
       navigate('/', { replace: true })
     } catch (err) {
-      setError(err.response?.data?.error || 'Login failed. Check credentials.')
+      setError(err.response?.data?.error || 'Login failed. Please check your credentials.')
     } finally {
       setLoading(false)
     }
@@ -47,8 +55,19 @@ export default function Login() {
             <h2 className="text-4xl font-bold gradient-text mb-2">
               Welcome Back
             </h2>
-            <p className="text-gray-400">Sign in to continue</p>
+            <p className="text-gray-400">Sign in to your account</p>
           </div>
+
+          {registrationSuccess && (
+            <div className="mb-6 p-4 bg-green-500/10 border border-green-500/30 text-green-300 rounded-xl">
+              <div className="flex items-center gap-2">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Registration successful! Please log in with your credentials.</span>
+              </div>
+            </div>
+          )}
 
           {error && (
             <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 text-red-300 rounded-xl">
