@@ -48,15 +48,21 @@ export default function Home() {
   const trendingTopics = [
     "New Vision for Co-Living Conversions",
     "Gensler Product Sustainability Standards™",
-    "Conversions+™ by Gensler"
+    "Conversions™ by Gensler"
   ]
   
   const blogPosts = [
+        {
+      title: "6 Trends Shaping Designs in 2026",
+      category: "DESIGN FORECAST 2026",
+      description: "Discover the most important and actionable theme shaping designs in 2026, based on over 100 trends across 33 industries around tge world",
+      image: "https://i.ibb.co/twLfRWLL/baghdad-sustainable-x2000lo.png"
+    },
     {
       title: "10 Workplace Trends for 2026: What's In and What's Out?",
       category: "BLOG",
       description: "This is the year of bold moves, human-first thinking, and AI that doesn't just answer questions but joins the team.",
-      image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=2069&auto=format&fit=crop"
+      image: "https://i.ibb.co/5hPPG156/Bio-Med-Realty-2000x1125-1024x576.png"
     },
     {
       title: "Trends to Watch Shaping the Future of Sports",
@@ -84,19 +90,19 @@ export default function Home() {
       title: "Capital One Arena",
       location: "Washington, D.C.",
       description: "Downtown Washington, D.C.'s premier sports and entertainment venue.",
-      image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=2069&auto=format&fit=crop"
+      image: "https://i.ibb.co/5xnrPvsJ/project-capital-one-arena-2024-508x508-1734586678.png"
     },
     {
       title: "Chicago Fire FC Stadium",
       location: "Chicago, Illinois",
       description: "Amplifies the fan experience and serves as the cornerstone of the city's newest mixed-use district.",
-      image: "https://images.unsplash.com/photo-1533460004989-cef01064af7e?q=80&w=2070&auto=format&fit=crop"
+      image: "https://i.ibb.co/ksLSQjBc/project-chicago-fire-fc-508x508-2.png"
     },
     {
       title: "Al-Ahly Stadium",
       location: "Cairo, Egypt",
       description: "World-class stadium design redefining the fan experience in North Africa.",
-      image: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?q=80&w=2070&auto=format&fit=crop"
+      image: "https://i.ibb.co/TzTHJX9/project-al-ahly-stadium-02-508x508-1739475365.png"
     }
   ]
   
@@ -104,58 +110,72 @@ export default function Home() {
     <>
       <Nav />
       <DesignForecast />
-      <Hero />
       
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-6 md:mb-0">DESIGN FORECAST 2026</h2>
-              <div className="flex gap-4">
-                <Link 
-                  to="/research" 
-                  className="px-6 py-3 bg-black text-white font-semibold hover:bg-gray-800 transition-colors"
-                >
-                  VIEW LATEST RESEARCH
-                </Link>
-                <Link 
-                  to="/blog" 
-                  className="px-6 py-3 border-2 border-black text-black font-semibold hover:bg-gray-50 transition-colors"
-                >
-                  VIEW DIALOGUE BLOG
-                </Link>
-              </div>
-            </div>
-            
-            <div className="mb-16">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">6 Trends Shaping Design in 2026</h3>
-              <p className="text-gray-600 text-lg max-w-3xl">
-                Discover the most important and actionable themes shaping design in 2026, based on over 100 trends across 33 industries around the world.
-              </p>
-            </div>
+          <div className="mb-16">
+            <h3 className="text-3xl font-bold text-gray-900 mb-6">6 Trends Shaping Design in 2026</h3>
+            <p className="text-gray-600 text-xl max-w-3xl">
+              Discover the most important and actionable themes shaping design in 2026, based on over 100 trends across 33 industries around the world.
+            </p>
           </div>
           
-          <div className="mb-12">
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-100">
-              <div className="mb-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-4">Also Trending</h3>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {trendingTopics.map((item, index) => (
-                  <div 
-                    key={index}
-                    className="p-4 border border-gray-100 rounded-lg hover:border-gray-200 hover:bg-gray-50 transition-colors cursor-pointer group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center group-hover:bg-gray-200 transition-colors">
-                        <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                      </div>
-                      <span className="text-gray-700 group-hover:text-gray-900 font-medium">{item}</span>
-                    </div>
+          <div className="flex gap-6 mb-20">
+            <Link 
+              to="/research" 
+              className="px-8 py-4 bg-black text-white font-semibold hover:bg-gray-800 transition-colors text-lg"
+            >
+              VIEW LATEST RESEARCH
+            </Link>
+            <Link 
+              to="/blog" 
+              className="px-8 py-4 border-2 border-black text-black font-semibold hover:bg-gray-50 transition-colors text-lg"
+            >
+              VIEW DIALOGUE BLOG
+            </Link>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="lg:col-span-2">
+              <Hero />
+            </div>
+            
+            <div>
+              <div className="bg-gray-50 rounded-2xl p-8 border border-gray-200">
+                <div className="mb-8">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-12 h-0.5 bg-gray-900"></div>
+                    <h3 className="text-2xl font-bold text-gray-900 uppercase tracking-widest">
+                      TRENDING
+                    </h3>
                   </div>
-                ))}
+                  <h4 className="text-3xl font-bold text-gray-900 mb-2">TOPICS</h4>
+                </div>
+
+                <div className="space-y-6">
+                  {trendingTopics.map((topic, index) => (
+                    <div 
+                      key={index}
+                      className="group cursor-pointer"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors mt-1 flex-shrink-0">
+                          <svg className="w-4 h-4 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                          </svg>
+                        </div>
+                        <div>
+                          <p className="text-gray-900 text-lg font-medium group-hover:text-gray-700 transition-colors leading-tight">
+                            {topic}
+                          </p>
+                        </div>
+                      </div>
+                      {index < trendingTopics.length - 1 && (
+                        <div className="mt-6 w-full h-px bg-gray-200"></div>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
@@ -318,7 +338,7 @@ export default function Home() {
               <div className="lg:w-1/2">
                 <div className="relative rounded-2xl overflow-hidden group">
                   <img 
-                    src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=2074&auto=format&fit=crop"
+                    src="https://static1.gensler.com/uploads/image/85346/gensler-la-1280x900_1686179621.jpg"
                     alt="Gensler Office"
                     className="w-full h-auto rounded-lg group-hover:scale-105 transition-transform duration-700"
                   />
@@ -342,7 +362,7 @@ export default function Home() {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
             <div>
-              <h4 className="font-bold text-gray-300 mb-6">COURCES</h4>
+              <h4 className="font-bold text-gray-300 mb-6">CONTACTS</h4>
               <div className="text-gray-500 text-sm hover:text-white transition-colors cursor-pointer">GENSLEFACT SHEET</div>
             </div>
             
