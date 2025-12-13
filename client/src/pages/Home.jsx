@@ -110,7 +110,7 @@ export default function Home() {
     <>
       <Nav />
       
-      <main className="lg:ml-64 pt-16">
+      <main className="pt-16">
         <DesignForecast />
         
         <section className="py-20 bg-white">
@@ -238,7 +238,7 @@ export default function Home() {
                         className="absolute w-full h-full object-cover"
                       >
                         <source 
-                          src="https://streamable.com/25fo2v" 
+                          src="https://assets.mixkit.co/videos/preview/mixkit-modern-office-lobby-41580-large.mp4" 
                           type="video/mp4" 
                         />
                       </video>
