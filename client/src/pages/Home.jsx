@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import Nav from './components/Nav'
-import Hero from './components/Hero'
-import FeatureCard from './components/FeatureCard'
-import DesignForecast from './components/DesignForecast'
+import Nav from '../components/Nav'
+import Hero from '../components/Hero'
+import FeatureCard from '../components/FeatureCard'
+import DesignForecast from '../components/DesignForecast'
 
 export default function Home() {
   useEffect(() => {
