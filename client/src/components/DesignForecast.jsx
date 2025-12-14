@@ -9,7 +9,7 @@ import hospitalFutureImage from '../assets/hospital-future.jpg';
 
 export default function DesignForecast() {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const videoRef = useRef(null);
@@ -21,11 +21,6 @@ export default function DesignForecast() {
       learnMoreText: "EXPLORE",
       projectTag: "Burlingame Point, Burlingame, California",
       videoUrl: designForecastVideo,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-slate-900/90 to-gray-800/80",
       textColor: "text-white",
       mediaType: "video"
@@ -36,11 +31,6 @@ export default function DesignForecast() {
       description: "Explore Gensler's Newest Survey of Urbanites in 65 Cities Around the World",
       learnMoreText: "LEARN MORE",
       videoUrl: cityMagneticVideo,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-gray-900/90 to-black/80",
       textColor: "text-white",
       mediaType: "video"
@@ -52,11 +42,6 @@ export default function DesignForecast() {
       learnMoreText: "LEARN MORE",
       projectTag: "Pittsburgh International Airport Terminal, Pittsburgh, Pennsylvania",
       videoUrl: airportTerminalVideo,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-blue-900/90 to-gray-900/80",
       textColor: "text-white",
       mediaType: "video"
@@ -67,11 +52,6 @@ export default function DesignForecast() {
       description: "Explore a New Design Approach That Adapts to Its Community Over Time",
       learnMoreText: "LEARN MORE",
       imageUrl: hospitalFutureImage,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-emerald-900/90 to-teal-900/80",
       textColor: "text-white",
       mediaType: "image" 
@@ -82,11 +62,6 @@ export default function DesignForecast() {
       description: "New Data Uncovers the Amenities and Agency People Are Looking For",
       learnMoreText: "LEARN MORE",
       videoUrl: workplaceDesignVideo,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-indigo-900/90 to-purple-900/80",
       textColor: "text-white",
       mediaType: "video"
@@ -97,11 +72,6 @@ export default function DesignForecast() {
       description: "The Gensler Product Sustainability Standards™ is Recognized for Helping the Industry Adopt More Regenerative Materials",
       learnMoreText: "LEARN MORE",
       videoUrl: innovativeCompanyVideo,
-      trendingTopics: [
-        "A New Vision for Co-Living Conversions",
-        "Gensler Product Sustainability Standards™",
-        "Conversions+™ by Gensler"
-      ],
       backgroundColor: "from-amber-900/90 to-orange-900/80",
       textColor: "text-white",
       mediaType: "video"
@@ -135,17 +105,13 @@ export default function DesignForecast() {
   };
 
   useEffect(() => {
-    let interval;
     let progressInterval;
     
     if (isAutoPlaying) {
-      interval = setInterval(() => {
-        nextSlide();
-      }, 7000);
-      
       progressInterval = setInterval(() => {
         setProgress(prev => {
           if (prev >= 100) {
+            setProgress(0);
             return 0;
           }
           return prev + (100 / 70);
@@ -154,10 +120,9 @@ export default function DesignForecast() {
     }
     
     return () => {
-      if (interval) clearInterval(interval);
       if (progressInterval) clearInterval(progressInterval);
     };
-  }, [isAutoPlaying, nextSlide]);
+  }, [isAutoPlaying]);
 
   useEffect(() => {
     const playVideo = async () => {
@@ -165,7 +130,7 @@ export default function DesignForecast() {
         try {
           await videoRef.current.play();
         } catch (error) {
-          console.log("Autoplay prevented, will play on user interaction");
+          console.log("Autoplay prevented");
         }
       }
     };
@@ -203,7 +168,6 @@ export default function DesignForecast() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [prevSlide, nextSlide]);
 
- 
   useEffect(() => {
     const handleUserInteraction = () => {
       if (videoRef.current && videoRef.current.paused) {
@@ -337,7 +301,6 @@ export default function DesignForecast() {
           )}
         </div>
 
-        {/* Pagination Controls - Bottom Center */}
         <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-xs sm:max-w-sm md:max-w-md px-4">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4">
             <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4">
