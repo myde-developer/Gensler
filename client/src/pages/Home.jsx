@@ -203,6 +203,33 @@ export default function Home() {
   const handleProjectClick = (projectId) => {
     setActiveProject(activeProject === projectId ? null : projectId);
   };
+useEffect(() => {
+  const video = document.getElementById('spotlight-video');
+  const playBtn = document.getElementById('spotlight-play-pause');
+  
+  if (video && playBtn) {
+    const updatePlayIcon = () => {
+      const playIcon = playBtn.querySelector('#play-icon');
+      if (playIcon) {
+        if (video.paused) {
+          // Show play icon
+          playIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />`;
+        } else {
+          // Show pause icon
+          playIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" />`;
+        }
+      }
+    };
+    
+    video.addEventListener('play', updatePlayIcon);
+    video.addEventListener('pause', updatePlayIcon);
+    
+    return () => {
+      video.removeEventListener('play', updatePlayIcon);
+      video.removeEventListener('pause', updatePlayIcon);
+    };
+  }
+}, []);
 
   useEffect(() => {
     const style = document.createElement('style')
@@ -461,15 +488,17 @@ export default function Home() {
       
       <div>
         <div className="sticky top-24">
-          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[400px] md:h-[500px] group">
+          {/* Spotlight Card - Clean design with only play/pause */}
+          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[500px] lg:h-[600px] group">
             <div className="absolute inset-0 z-0">
               <video
-                key="spotlight-video"
+                id="spotlight-video"
                 autoPlay
                 muted
                 loop
                 playsInline
                 className="absolute w-full h-full object-cover"
+                poster="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
               >
                 <source 
                   src={spotlightVideo} 
@@ -477,8 +506,27 @@ export default function Home() {
                 />
                 Your browser does not support the video tag.
               </video>
-              <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-gray-900/60 opacity-70"></div>
-              <div className="absolute inset-0 bg-black/20"></div>
+              
+              {/* Simple Play/Pause Button */}
+              <button 
+                id="spotlight-play-pause"
+                className="absolute top-4 left-4 z-20 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center hover:bg-black/90 transition-all duration-300"
+                onClick={() => {
+                  const video = document.getElementById('spotlight-video');
+                  if (video.paused) {
+                    video.play();
+                  } else {
+                    video.pause();
+                  }
+                }}
+              >
+                <svg id="play-icon" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                </svg>
+              </button>
+              
+              <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/30 to-black/40"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
             </div>
             
             <div className="relative z-10 h-full p-4 md:p-8 flex flex-col justify-end">
@@ -490,13 +538,13 @@ export default function Home() {
               
               <div className="mb-4 md:mb-6">
                 <div className="flex items-center gap-2 mb-3 md:mb-4">
-                  <div className="w-1 h-4 md:h-6 bg-blue-400 rounded-full"></div>
-                  <h2 className="text-lg md:text-2xl font-bold text-white">SPOTLIGHT</h2>
+                  <div className="w-1 h-6 md:h-8 bg-blue-400 rounded-full"></div>
+                  <h2 className="text-xl md:text-2xl font-bold text-white">SPOTLIGHT</h2>
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+                <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-3 md:mb-4 leading-tight">
                   Real Estate Value Moves From Square Footage to Human Connection
                 </h3>
-                <p className="text-gray-200 text-sm md:text-lg leading-relaxed max-w-2xl">
+                <p className="text-gray-200 text-base md:text-xl leading-relaxed max-w-3xl">
                   Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
                 </p>
               </div>
@@ -510,10 +558,11 @@ export default function Home() {
                 ].map((item, index) => (
                   <div 
                     key={index}
-                    className="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-lg border border-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer"
+                    className="bg-white/10 backdrop-blur-sm p-4 md:p-5 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/15 transition-all duration-300 cursor-pointer group/item"
                   >
-                    <div className="text-white font-medium text-sm md:text-lg group-hover/item:text-blue-200 transition-colors">
-                      {item.title}
+                    <div className="text-white font-medium text-base md:text-lg group-hover/item:text-blue-200 transition-colors flex items-center gap-3">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full flex-shrink-0"></div>
+                      <span>{item.title}</span>
                     </div>
                   </div>
                 ))}
@@ -521,17 +570,17 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 md:pt-6 border-t border-white/20 gap-4">
                 <div className="flex items-center gap-3 md:gap-4">
-                  <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
-                    <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <div className="text-white text-sm md:text-base font-medium flex items-center gap-2">
+                    <svg className="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                     </svg>
-                  </button>
-                  <div className="text-white text-xs md:text-sm font-medium">Featured Analysis</div>
+                    Featured Analysis
+                  </div>
                 </div>
                 
-                <button className="text-white text-sm md:text-lg font-medium hover:text-blue-300 transition-colors flex items-center gap-2">
+                <button className="px-6 py-3 bg-white/20 backdrop-blur-sm text-white font-semibold hover:bg-white/30 transition-colors flex items-center gap-2 rounded-lg border border-white/30 hover:border-white/40">
                   Explore Insights
-                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
@@ -539,6 +588,7 @@ export default function Home() {
             </div>
           </div>
           
+          {/* Featured Projects Section */}
           <div>
             <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8">FEATURED PROJECTS</h2>
             <div className="space-y-6 md:space-y-8">
