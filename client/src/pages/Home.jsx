@@ -488,7 +488,7 @@ useEffect(() => {
       
       <div>
         <div className="sticky top-24">
-          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[500px] lg:h-[600px] group">
+          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[600px] lg:h-[750px] group">
             <div className="absolute inset-0 z-0">
               <video
                 id="spotlight-video"
@@ -498,15 +498,14 @@ useEffect(() => {
                 playsInline
                 className="absolute w-full h-full object-cover"
               >
-                <source 
-                  src={spotlightVideo} 
-                  type="video/mp4" 
-                />
+                <source src={spotlightVideo} type="video/mp4" />
               </video>
+              
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
               
               <button 
                 id="spotlight-play-pause"
-                className="absolute top-4 left-4 z-20 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm flex items-center justify-center hover:bg-black/90 transition-all duration-300"
+                className="absolute top-4 left-4 z-20 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-black/70 transition-all duration-300"
                 onClick={() => {
                   const video = document.getElementById('spotlight-video');
                   if (video.paused) {
@@ -520,30 +519,51 @@ useEffect(() => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 </svg>
               </button>
-              
-              <div className="absolute inset-0 bg-gradient-to-br from-black/20 via-black/10 to-black/20"></div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
             </div>
             
-            <div className="relative z-10 h-full flex flex-col justify-end p-6">
+            <div className="relative z-10 h-full flex flex-col justify-end p-4 md:p-6 lg:p-8">
               <div className="absolute top-4 right-4">
-                <div className="px-3 py-1.5 bg-black/50 backdrop-blur-sm rounded-full">
+                <div className="px-3 py-1.5 bg-black/30 backdrop-blur-sm rounded-full">
                   <span className="text-white text-xs font-medium">SPOTLIGHT</span>
                 </div>
               </div>
               
               <div className="mb-6">
-                <h3 className="text-3xl md:text-4xl font-bold text-white mb-3 leading-tight">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
                   Real Estate Value Moves From Square Footage to Human Connection
                 </h3>
-                <p className="text-gray-200 text-lg max-w-2xl">
-                  Traditional performance benchmarks are evolving to prioritize engagement and experience.
+                <p className="text-gray-100 text-lg md:text-xl lg:text-2xl max-w-3xl [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
+                  Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
                 </p>
               </div>
               
-              <button className="self-start px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20">
-                Explore Insights →
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
+                {[
+                  {title: "Design's Expanding Role in Measuring Value"},
+                  {title: "A Multigenerational Workforce Redefines Expectations"},
+                  {title: "Inside Bangalore's Talent Race"},
+                  {title: "Adaptive Workplace Design in the Parisian Urban Fabric"}
+                ].map((item, index) => (
+                  <div 
+                    key={index}
+                    className="p-4 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10"
+                  >
+                    <div className="text-white font-medium text-base md:text-lg group-hover:text-blue-200 transition-colors">
+                      {item.title}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-white/10">
+                <div className="text-white text-base font-medium mb-3 sm:mb-0">
+                  Featured Analysis
+                </div>
+                
+                <button className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20">
+                  Explore Insights →
+                </button>
+              </div>
             </div>
           </div>
           
