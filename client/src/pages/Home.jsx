@@ -481,14 +481,14 @@ useEffect(() => {
           </div>
         </section>
         
-<section className="py-20 bg-gray-50">
+<section className="py-10 md:py-20 bg-gray-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <div className="lg:col-span-1"></div>
       
       <div>
-        <div className="sticky top-24">
-          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[600px] lg:h-[750px] group">
+        <div className="lg:sticky lg:top-24">
+          <div className="overflow-hidden rounded-xl md:rounded-2xl shadow-lg md:shadow-xl mb-8 lg:mb-12 relative h-[400px] sm:h-[500px] md:h-[600px] lg:h-[750px] group">
             <div className="absolute inset-0 z-0">
               <video
                 id="spotlight-video"
@@ -501,11 +501,11 @@ useEffect(() => {
                 <source src={spotlightVideo} type="video/mp4" />
               </video>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70 md:opacity-60"></div>
               
               <button 
                 id="spotlight-play-pause"
-                className="absolute top-4 left-4 z-20 w-12 h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-black/70 transition-all duration-300"
+                className="absolute top-3 left-3 md:top-4 md:left-4 z-20 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center hover:bg-black/70 transition-all duration-300"
                 onClick={() => {
                   const video = document.getElementById('spotlight-video');
                   if (video.paused) {
@@ -515,29 +515,29 @@ useEffect(() => {
                   }
                 }}
               >
-                <svg id="play-icon" className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="play-icon" className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                 </svg>
               </button>
             </div>
             
             <div className="relative z-10 h-full flex flex-col justify-end p-4 md:p-6 lg:p-8">
-              <div className="absolute top-4 right-4">
-                <div className="px-3 py-1.5 bg-black/30 backdrop-blur-sm rounded-full">
+              <div className="absolute top-3 right-3 md:top-4 md:right-4">
+                <div className="px-2 py-1 md:px-3 md:py-1.5 bg-black/30 backdrop-blur-sm rounded-full">
                   <span className="text-white text-xs font-medium">SPOTLIGHT</span>
                 </div>
               </div>
               
-              <div className="mb-6">
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
+              <div className="mb-4 md:mb-6">
+                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
                   Real Estate Value Moves From Square Footage to Human Connection
                 </h3>
-                <p className="text-gray-100 text-lg md:text-xl lg:text-2xl max-w-3xl [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
+                <p className="text-gray-100 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-3xl [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
                   Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 lg:gap-4 mb-4 md:mb-6">
                 {[
                   {title: "Design's Expanding Role in Measuring Value"},
                   {title: "A Multigenerational Workforce Redefines Expectations"},
@@ -546,76 +546,61 @@ useEffect(() => {
                 ].map((item, index) => (
                   <div 
                     key={index}
-                    className="p-4 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10"
+                    className="p-2 sm:p-3 md:p-4 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10"
                   >
-                    <div className="text-white font-medium text-base md:text-lg group-hover:text-blue-200 transition-colors">
+                    <div className="text-white font-medium text-xs sm:text-sm md:text-base lg:text-lg group-hover:text-blue-200 transition-colors">
                       {item.title}
                     </div>
                   </div>
                 ))}
               </div>
               
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 border-t border-white/10">
-                <div className="text-white text-base font-medium mb-3 sm:mb-0">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-3 md:pt-4 border-t border-white/10">
+                <div className="text-white text-sm md:text-base font-medium mb-2 sm:mb-0">
                   Featured Analysis
                 </div>
                 
-                <button className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20">
+                <button className="px-4 py-2 md:px-6 md:py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20 text-sm md:text-base">
                   Explore Insights →
                 </button>
               </div>
             </div>
           </div>
-          
           <div>
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8">FEATURED PROJECTS</h2>
-            <div className="space-y-6 md:space-y-8">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6 lg:mb-8">FEATURED PROJECTS</h2>
+            <div className="space-y-4 md:space-y-6 lg:space-y-8">
               {featuredProjects.map((project) => (
                 <div 
                   key={project.id}
                   className="relative cursor-pointer group"
                   onClick={() => handleProjectClick(project.id)}
                 >
-                  <div className="relative overflow-hidden rounded-lg h-56 md:h-64">
-                    <div className={`absolute inset-0 transition-opacity duration-300 ${
+                  <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end transition-all duration-300 ${
                       activeProject === project.id ? 'opacity-0' : 'opacity-100'
                     }`}>
-                      <img 
-                        src={project.image} 
-                        alt={project.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-opacity duration-300 ${
-                      activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                    }`}>
-                      <div className="p-4 md:p-6">
-                        <h3 className="text-xl md:text-2xl font-bold text-white">{project.title}</h3>
+                      <div className="p-4 md:p-6 w-full">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white text-center">{project.title}</h3>
                       </div>
                     </div>
-                    
                     <div className={`absolute inset-0 bg-white p-4 md:p-6 flex flex-col justify-center transition-all duration-300 transform ${
                       activeProject === project.id 
                         ? 'opacity-100 scale-100' 
                         : 'opacity-0 scale-95 pointer-events-none'
                     }`}>
-                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{project.title}</h3>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{project.title}</h3>
                       <p className="text-gray-600 font-medium mb-2 md:mb-3">{project.location}</p>
-                      <p className="text-gray-500 text-xs md:text-sm leading-relaxed">{project.description}</p>
+                      <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{project.description}</p>
                       
-                      <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-gray-200">
+                      <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-200">
                         <p className="text-gray-400 text-xs">Click to view image</p>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className={`mt-3 md:mt-4 transition-opacity duration-300 ${
-                    activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                  }`}>
-                    <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                      {project.title}
-                    </h3>
                   </div>
                 </div>
               ))}
