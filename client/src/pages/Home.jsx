@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import DesignForecast from '../components/DesignForecast'
+import spotlightVideo from '../assets/spotlight.mp4';
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -428,20 +429,20 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex gap-6 mt-20 pt-12 border-t border-gray-200">
-              <Link 
-                to="/research" 
-                className="px-8 py-4 bg-black text-white font-semibold hover:bg-gray-800 transition-colors text-lg"
-              >
-                VIEW LATEST RESEARCH
-              </Link>
-              <Link 
-                to="/blog" 
-                className="px-8 py-4 border-2 border-black text-black font-semibold hover:bg-gray-50 transition-colors text-lg"
-              >
-                VIEW DIALOGUE BLOG
-              </Link>
-            </div>
+           <div className="flex flex-col sm:flex-row gap-4 mt-20 pt-12 border-t border-gray-200">
+  <Link 
+    to="/research" 
+    className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-black text-white font-semibold hover:bg-gray-800 transition-colors text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+  >
+    VIEW LATEST RESEARCH
+  </Link>
+  <Link 
+    to="/blog" 
+    className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 border-2 border-black text-black font-semibold hover:bg-gray-50 transition-colors text-sm sm:text-base md:text-lg w-full sm:w-auto text-center"
+  >
+    VIEW DIALOGUE BLOG
+  </Link>
+</div>
           </div>
         </section>
             
@@ -454,145 +455,149 @@ export default function Home() {
         </section>
         
         <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <div className="lg:col-span-1"></div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+      <div className="lg:col-span-1"></div>
+      
+      <div>
+        <div className="sticky top-24">
+          <div className="overflow-hidden rounded-2xl shadow-xl mb-8 lg:mb-12 relative h-[400px] md:h-[500px] group">
+            <div className="absolute inset-0 z-0">
+              <video
+                key="spotlight-video"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="absolute w-full h-full object-cover"
+              >
+                <source 
+                  src={spotlightVideo} 
+                  type="video/mp4" 
+                />
+                Your browser does not support the video tag.
+              </video>
+              <div className="absolute inset-0 bg-gradient-to-br from-black/50 to-gray-900/60 opacity-70"></div>
+              <div className="absolute inset-0 bg-black/20"></div>
+            </div>
+            
+            <div className="relative z-10 h-full p-4 md:p-8 flex flex-col justify-end">
+              <div className="absolute top-4 right-4">
+                <div className="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full border border-white/20">
+                  <span className="text-white text-xs font-medium">SPOTLIGHT</span>
+                </div>
+              </div>
               
-              <div>
-                <div className="sticky top-24">
-                  <div className="overflow-hidden rounded-2xl shadow-xl mb-12 relative h-[500px] group">
-                    <div className="absolute inset-0 z-0">
-                      <video
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        className="absolute w-full h-full object-cover"
-                      >
-                        <source 
-                          src="../assets/spotlight.mp4" 
-                          type="video/mp4" 
-                        />
-                      </video>
-                      <div className="absolute inset-0 bg-gradient-to-br from-black/70 to-gray-900/80"></div>
-                      <div className="absolute inset-0 bg-black/40"></div>
+              <div className="mb-4 md:mb-6">
+                <div className="flex items-center gap-2 mb-3 md:mb-4">
+                  <div className="w-1 h-4 md:h-6 bg-blue-400 rounded-full"></div>
+                  <h2 className="text-lg md:text-2xl font-bold text-white">SPOTLIGHT</h2>
+                </div>
+                <h3 className="text-xl md:text-3xl font-bold text-white mb-3 md:mb-4">
+                  Real Estate Value Moves From Square Footage to Human Connection
+                </h3>
+                <p className="text-gray-200 text-sm md:text-lg leading-relaxed max-w-2xl">
+                  Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 mb-6 md:mb-8">
+                {[
+                  {title: "Design's Expanding Role in Measuring Value"},
+                  {title: "A Multigenerational Workforce Redefines Expectations"},
+                  {title: "Inside Bangalore's Talent Race"},
+                  {title: "Adaptive Workplace Design in the Parisian Urban Fabric"}
+                ].map((item, index) => (
+                  <div 
+                    key={index}
+                    className="bg-white/10 backdrop-blur-sm p-3 md:p-4 rounded-lg border border-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer"
+                  >
+                    <div className="text-white font-medium text-sm md:text-lg group-hover/item:text-blue-200 transition-colors">
+                      {item.title}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-4 md:pt-6 border-t border-white/20 gap-4">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <svg className="w-5 h-5 md:w-6 md:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    </svg>
+                  </button>
+                  <div className="text-white text-xs md:text-sm font-medium">Featured Analysis</div>
+                </div>
+                
+                <button className="text-white text-sm md:text-lg font-medium hover:text-blue-300 transition-colors flex items-center gap-2">
+                  Explore Insights
+                  <svg className="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6 md:mb-8">FEATURED PROJECTS</h2>
+            <div className="space-y-6 md:space-y-8">
+              {featuredProjects.map((project) => (
+                <div 
+                  key={project.id}
+                  className="relative cursor-pointer group"
+                  onClick={() => handleProjectClick(project.id)}
+                >
+                  <div className="relative overflow-hidden rounded-lg h-56 md:h-64">
+                    <div className={`absolute inset-0 transition-opacity duration-300 ${
+                      activeProject === project.id ? 'opacity-0' : 'opacity-100'
+                    }`}>
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
                     </div>
                     
-                    <div className="relative z-10 h-full p-8 flex flex-col justify-end">
-                      <div className="absolute top-4 right-4">
-                        <div className="flex items-center gap-2 px-3 py-1.5 bg-black/60 backdrop-blur-sm rounded-full border border-white/20">
-                          <span className="text-white text-xs font-medium">SPOTLIGHT</span>
-                        </div>
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-opacity duration-300 ${
+                      activeProject === project.id ? 'opacity-0' : 'opacity-100'
+                    }`}>
+                      <div className="p-4 md:p-6">
+                        <h3 className="text-xl md:text-2xl font-bold text-white">{project.title}</h3>
                       </div>
+                    </div>
+                    
+                    <div className={`absolute inset-0 bg-white p-4 md:p-6 flex flex-col justify-center transition-all duration-300 transform ${
+                      activeProject === project.id 
+                        ? 'opacity-100 scale-100' 
+                        : 'opacity-0 scale-95 pointer-events-none'
+                    }`}>
+                      <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{project.title}</h3>
+                      <p className="text-gray-600 font-medium mb-2 md:mb-3">{project.location}</p>
+                      <p className="text-gray-500 text-xs md:text-sm leading-relaxed">{project.description}</p>
                       
-                      <div className="mb-6">
-                        <div className="flex items-center gap-2 mb-4">
-                          <div className="w-1 h-6 bg-blue-400 rounded-full"></div>
-                          <h2 className="text-2xl font-bold text-white">SPOTLIGHT</h2>
-                        </div>
-                        <h3 className="text-3xl font-bold text-white mb-4">Real Estate Value Moves From Square Footage to Human Connection</h3>
-                        <p className="text-gray-200 text-lg leading-relaxed max-w-2xl">
-                          Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
-                        </p>
-                      </div>
-                      
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                        {[
-                          {title: "Design's Expanding Role in Measuring Value"},
-                          {title: "A Multigenerational Workforce Redefines Expectations"},
-                          {title: "Inside Bangalore's Talent Race"},
-                          {title: "Adaptive Workplace Design in the Parisian Urban Fabric"}
-                        ].map((item, index) => (
-                          <div 
-                            key={index}
-                            className="bg-white/10 backdrop-blur-sm p-4 rounded-lg border border-white/20 hover:border-white/30 transition-all duration-300 cursor-pointer group-hover/item:bg-white/15"
-                          >
-                            <div className="text-white font-medium text-lg group-hover/item:text-blue-200 transition-colors">
-                              {item.title}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center justify-between pt-6 border-t border-white/20">
-                        <div className="flex items-center gap-4">
-                          <button className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors group/play">
-                            <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 10v4a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            </svg>
-                          </button>
-                          <div className="text-white text-sm font-medium">Featured Analysis</div>
-                        </div>
-                        
-                        <button className="text-white text-lg font-medium hover:text-blue-300 transition-colors flex items-center gap-2">
-                          Explore Insights
-                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                          </svg>
-                        </button>
+                      <div className="mt-4 md:mt-6 pt-3 md:pt-4 border-t border-gray-200">
+                        <p className="text-gray-400 text-xs">Click to view image</p>
                       </div>
                     </div>
                   </div>
                   
-                  <div>
-                    <h2 className="text-3xl font-bold text-gray-900 mb-8">FEATURED PROJECTS</h2>
-                    <div className="space-y-8">
-                      {featuredProjects.map((project) => (
-                        <div 
-                          key={project.id}
-                          className="relative cursor-pointer group"
-                          onClick={() => handleProjectClick(project.id)}
-                        >
-                          <div className="relative overflow-hidden rounded-lg h-64">
-                            <div className={`absolute inset-0 transition-opacity duration-300 ${
-                              activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                            }`}>
-                              <img 
-                                src={project.image} 
-                                alt={project.title}
-                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                              />
-                            </div>
-                            
-                            <div className={`absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end transition-opacity duration-300 ${
-                              activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                            }`}>
-                              <div className="p-6">
-                                <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                              </div>
-                            </div>
-                            
-                            <div className={`absolute inset-0 bg-white p-6 flex flex-col justify-center transition-all duration-300 transform ${
-                              activeProject === project.id 
-                                ? 'opacity-100 scale-100' 
-                                : 'opacity-0 scale-95 pointer-events-none'
-                            }`}>
-                              <h3 className="text-2xl font-bold text-gray-900 mb-4">{project.title}</h3>
-                              <p className="text-gray-600 font-medium mb-3">{project.location}</p>
-                              <p className="text-gray-500 text-sm leading-relaxed">{project.description}</p>
-                              
-                              <div className="mt-6 pt-4 border-t border-gray-200">
-                                <p className="text-gray-400 text-xs">Click to view image</p>
-                              </div>
-                            </div>
-                          </div>
-                          
-                          <div className={`mt-4 transition-opacity duration-300 ${
-                            activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                          }`}>
-                            <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
-                              {project.title}
-                            </h3>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                  <div className={`mt-3 md:mt-4 transition-opacity duration-300 ${
+                    activeProject === project.id ? 'opacity-0' : 'opacity-100'
+                  }`}>
+                    <h3 className="text-lg md:text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                      {project.title}
+                    </h3>
                   </div>
                 </div>
-              </div>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
         
         <footer className="bg-black text-white pt-20 pb-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
