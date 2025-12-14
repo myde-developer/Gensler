@@ -501,7 +501,7 @@ useEffect(() => {
                 <source src={spotlightVideo} type="video/mp4" />
               </video>
               
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-70 md:opacity-60"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/30 to-transparent opacity-80 md:opacity-70"></div>
               
               <button 
                 id="spotlight-play-pause"
@@ -521,23 +521,24 @@ useEffect(() => {
               </button>
             </div>
             
-            <div className="relative z-10 h-full flex flex-col justify-end p-4 md:p-6 lg:p-8">
-              <div className="absolute top-3 right-3 md:top-4 md:right-4">
-                <div className="px-2 py-1 md:px-3 md:py-1.5 bg-black/30 backdrop-blur-sm rounded-full">
-                  <span className="text-white text-xs font-medium">SPOTLIGHT</span>
+            <div className="relative z-10 h-full flex flex-col justify-end p-4 sm:p-5 md:p-6 lg:p-8">
+              <div className="absolute top-3 right-3 sm:top-4 sm:right-4 md:top-6 md:right-6">
+                <div className="px-2.5 py-1 sm:px-3 sm:py-1.5 bg-black/40 backdrop-blur-sm rounded-full">
+                  <span className="text-white text-xs sm:text-sm font-medium tracking-wide">SPOTLIGHT</span>
                 </div>
               </div>
               
-              <div className="mb-4 md:mb-6">
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white mb-2 sm:mb-3 leading-tight [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
+              <div className="mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+                <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-[2.75rem] font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight sm:leading-snug md:leading-tight [text-shadow:0_2px_6px_rgba(0,0,0,0.6)]">
                   Real Estate Value Moves From Square Footage to Human Connection
                 </h3>
-                <p className="text-gray-100 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-3xl [text-shadow:0_1px_3px_rgba(0,0,0,0.5)]">
+                
+                <p className="text-gray-100 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl max-w-full sm:max-w-2xl md:max-w-3xl leading-relaxed sm:leading-relaxed md:leading-relaxed [text-shadow:0_1px_4px_rgba(0,0,0,0.5)]">
                   Traditional performance benchmarks are evolving to prioritize engagement and experience across all generations.
                 </p>
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 md:gap-3 lg:gap-4 mb-4 md:mb-6">
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 sm:gap-3 md:gap-4 mb-4 sm:mb-5 md:mb-6">
                 {[
                   {title: "Design's Expanding Role in Measuring Value"},
                   {title: "A Multigenerational Workforce Redefines Expectations"},
@@ -546,28 +547,29 @@ useEffect(() => {
                 ].map((item, index) => (
                   <div 
                     key={index}
-                    className="p-2 sm:p-3 md:p-4 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10"
+                    className="p-2.5 sm:p-3 md:p-4 rounded-lg backdrop-blur-sm bg-white/5 hover:bg-white/10 transition-all duration-300 cursor-pointer border border-white/10"
                   >
-                    <div className="text-white font-medium text-xs sm:text-sm md:text-base lg:text-lg group-hover:text-blue-200 transition-colors">
+                    <div className="text-white font-medium text-xs xs:text-sm sm:text-sm md:text-base lg:text-lg leading-tight sm:leading-snug group-hover:text-blue-200 transition-colors">
                       {item.title}
                     </div>
                   </div>
                 ))}
               </div>
               
-              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-3 md:pt-4 border-t border-white/10">
-                <div className="text-white text-sm md:text-base font-medium mb-2 sm:mb-0">
+              <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between pt-3 sm:pt-4 border-t border-white/10">
+                <div className="text-white text-xs sm:text-sm md:text-base font-medium mb-2 xs:mb-0 mr-0 xs:mr-4">
                   Featured Analysis
                 </div>
                 
-                <button className="px-4 py-2 md:px-6 md:py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20 text-sm md:text-base">
+                <button className="px-4 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-3 bg-white/10 backdrop-blur-sm text-white font-semibold hover:bg-white/20 transition-colors rounded-lg border border-white/20 text-xs sm:text-sm md:text-base whitespace-nowrap">
                   Explore Insights →
                 </button>
               </div>
             </div>
           </div>
+          
           <div>
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6 lg:mb-8">FEATURED PROJECTS</h2>
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6 lg:mb-8">FEATURED PROJECTS</h2>
             <div className="space-y-4 md:space-y-6 lg:space-y-8">
               {featuredProjects.map((project) => (
                 <div 
@@ -581,20 +583,22 @@ useEffect(() => {
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end transition-all duration-300 ${
+                    
+                    <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent flex items-end transition-all duration-300 ${
                       activeProject === project.id ? 'opacity-0' : 'opacity-100'
                     }`}>
                       <div className="p-4 md:p-6 w-full">
-                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white text-center">{project.title}</h3>
+                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white text-center">{project.title}</h3>
                       </div>
                     </div>
+                    
                     <div className={`absolute inset-0 bg-white p-4 md:p-6 flex flex-col justify-center transition-all duration-300 transform ${
                       activeProject === project.id 
                         ? 'opacity-100 scale-100' 
                         : 'opacity-0 scale-95 pointer-events-none'
                     }`}>
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 mb-3 md:mb-4">{project.title}</h3>
-                      <p className="text-gray-600 font-medium mb-2 md:mb-3">{project.location}</p>
+                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">{project.title}</h3>
+                      <p className="text-gray-600 font-medium text-sm sm:text-base mb-2 md:mb-3">{project.location}</p>
                       <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{project.description}</p>
                       
                       <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-200">
