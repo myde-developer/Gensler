@@ -11,7 +11,6 @@ export default function DesignForecast() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [progress, setProgress] = useState(0);
   const videoRef = useRef(null);
   
   const slides = [
@@ -82,7 +81,6 @@ export default function DesignForecast() {
     setCurrentSlide((prev) => {
       const nextIndex = (prev + 1) % slides.length;
       setIsLoading(true);
-      setProgress(0);
       return nextIndex;
     });
   }, [slides.length]);
@@ -91,7 +89,6 @@ export default function DesignForecast() {
     setCurrentSlide((prev) => {
       const prevIndex = (prev - 1 + slides.length) % slides.length;
       setIsLoading(true);
-      setProgress(0);
       return prevIndex;
     });
   }, [slides.length]);
@@ -99,30 +96,9 @@ export default function DesignForecast() {
   const goToSlide = (index) => {
     if (index !== currentSlide) {
       setIsLoading(true);
-      setProgress(0);
       setCurrentSlide(index);
     }
   };
-
-  useEffect(() => {
-    let progressInterval;
-    
-    if (isAutoPlaying) {
-      progressInterval = setInterval(() => {
-        setProgress(prev => {
-          if (prev >= 100) {
-            setProgress(0);
-            return 0;
-          }
-          return prev + (100 / 70);
-        });
-      }, 100);
-    }
-    
-    return () => {
-      if (progressInterval) clearInterval(progressInterval);
-    };
-  }, [isAutoPlaying]);
 
   useEffect(() => {
     const playVideo = async () => {
@@ -303,7 +279,7 @@ export default function DesignForecast() {
 
         <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 w-full max-w-xs sm:max-w-sm md:max-w-md px-4">
           <div className="bg-white/10 backdrop-blur-sm rounded-xl sm:rounded-2xl p-3 sm:p-4">
-            <div className="flex items-center justify-between mb-2 sm:mb-3 md:mb-4">
+            <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2 sm:space-x-3">
                 {slides.map((_, index) => (
                   <button
@@ -323,15 +299,6 @@ export default function DesignForecast() {
                 <span className="text-lg sm:text-xl md:text-2xl font-bold">{currentSlide + 1}</span>
                 <span className="mx-1 sm:mx-2">/</span>
                 <span className="text-white/70">{slides.length}</span>
-              </div>
-            </div>
-            
-            <div className="mt-1 sm:mt-2">
-              <div className="w-full h-0.5 sm:h-1 bg-white/30 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-white transition-all duration-100 ease-linear"
-                  style={{ width: `${progress}%` }}
-                />
               </div>
             </div>
           </div>

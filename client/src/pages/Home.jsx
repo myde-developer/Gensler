@@ -203,6 +203,8 @@ export default function Home() {
   const handleProjectClick = (projectId) => {
     setActiveProject(activeProject === projectId ? null : projectId);
   };
+  const [isSpotlightPlaying, setIsSpotlightPlaying] = useState(true);
+
 useEffect(() => {
   const video = document.getElementById('spotlight-video');
   const playBtn = document.getElementById('spotlight-play-pause');
@@ -479,7 +481,7 @@ useEffect(() => {
           </div>
         </section>
         
-       <section className="py-20 bg-gray-50">
+<section className="py-20 bg-gray-50">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
       <div className="lg:col-span-1"></div>
