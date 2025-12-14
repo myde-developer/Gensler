@@ -559,50 +559,51 @@ export default function Home() {
           </div>
         </section>
         
-        <section className="py-10 md:py-20 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6 lg:mb-8">FEATURED PROJECTS</h2>
-            <div className="space-y-4 md:space-y-6 lg:space-y-8">
-              {featuredProjects.map((project) => (
-                <div 
-                  key={project.id}
-                  className="relative cursor-pointer group"
-                  onClick={() => handleProjectClick(project.id)}
-                >
-                  <div className="relative overflow-hidden rounded-lg h-48 sm:h-56 md:h-64">
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    
-                    <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent flex items-end transition-all duration-300 ${
-                      activeProject === project.id ? 'opacity-0' : 'opacity-100'
-                    }`}>
-                      <div className="p-4 md:p-6 w-full">
-                        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-white text-center">{project.title}</h3>
-                      </div>
-                    </div>
-                    
-                    <div className={`absolute inset-0 bg-white p-4 md:p-6 flex flex-col justify-center transition-all duration-300 transform ${
-                      activeProject === project.id 
-                        ? 'opacity-100 scale-100' 
-                        : 'opacity-0 scale-95 pointer-events-none'
-                    }`}>
-                      <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-gray-900 mb-2 sm:mb-3 md:mb-4">{project.title}</h3>
-                      <p className="text-gray-600 font-medium text-sm sm:text-base mb-2 md:mb-3">{project.location}</p>
-                      <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{project.description}</p>
-                      
-                      <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-gray-200">
-                        <p className="text-gray-400 text-xs">Click to view image</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+<section className="py-10 md:py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-4 md:mb-6 lg:mb-8">FEATURED PROJECTS</h2>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8">
+      {featuredProjects.map((project) => (
+        <div 
+          key={project.id}
+          className="relative cursor-pointer group"
+          onClick={() => handleProjectClick(project.id)}
+        >
+          <div className="relative overflow-hidden rounded-lg h-40 sm:h-48 md:h-52 lg:h-56 xl:h-60">
+            <img 
+              src={project.image} 
+              alt={project.title}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+            
+            <div className={`absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent flex items-end transition-all duration-300 ${
+              activeProject === project.id ? 'opacity-0' : 'opacity-100'
+            }`}>
+              <div className="p-3 md:p-4 w-full">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-white text-center">{project.title}</h3>
+              </div>
+            </div>
+            
+            <div className={`absolute inset-0 bg-white p-3 md:p-4 flex flex-col justify-center transition-all duration-300 transform overflow-y-auto ${
+              activeProject === project.id 
+                ? 'opacity-100 scale-100' 
+                : 'opacity-0 scale-95 pointer-events-none'
+            }`}>
+              <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
+              <p className="text-gray-600 font-medium text-xs sm:text-sm mb-1 md:mb-2">{project.location}</p>
+              <p className="text-gray-500 text-xs leading-relaxed">{project.description}</p>
+              
+              <div className="mt-2 md:mt-3 pt-2 md:pt-3 border-t border-gray-200">
+                <p className="text-gray-400 text-xs">Click to view image</p>
+              </div>
             </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
         
 <footer className="bg-black text-white">
   <div className="bg-white text-black py-20">
